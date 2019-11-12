@@ -6,7 +6,7 @@ $(document).ready(function() {
             $("#currentWeatherP").empty();
             var cityName = $("#city").val().trim();
             var APIkey = "6fd0a2db00d13c0d7262769158313a94";
-            var queryURLCurrentWeather = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + APIkey;
+            var queryURLCurrentWeather = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + APIkey;
             event.preventDefault();
             $.ajax({
                 url: queryURLCurrentWeather,
@@ -14,7 +14,7 @@ $(document).ready(function() {
                 dataType: "json",
             }).then(function(response) {
                 var date = new Date()
-                var displayIcon = $("<img>").attr("src", "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png")
+                var displayIcon = $("<img>").attr("src", "https://openweathermap.org/img/w/" + response.weather[0].icon + ".png")
                 var fahrenheit = (response.main.temp) * (9/5) - 459.67;
                 var displayTemp = $("<p>").text("Temperature: " + fahrenheit.toFixed(2) + " ^F")
                 var displayHumidity = $("<p>").text("Humidity: " + response.main.humidity + " %")
@@ -37,7 +37,7 @@ $(document).ready(function() {
         function fiveDayForecast() {
             var cityName = $("#city").val().trim();
             var APIkey = "6fd0a2db00d13c0d7262769158313a94";
-            var queryURLFiveDayForecast = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=" + APIkey;
+            var queryURLFiveDayForecast = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=" + APIkey;
             event.preventDefault();
             $.ajax({
                 url: queryURLFiveDayForecast,
@@ -47,7 +47,7 @@ $(document).ready(function() {
                 $("#5DayForecast").html("<h4 class=\"mt-3\">5-Day Forecast:</h4>").append("<div class=\"row\">");
                 for (var i = 0; i < response.list.length; i++) {
                     if (response.list[i].dt_txt.indexOf("15:00:00") !== -1) {
-                        var displayIcon = $("<img>").attr("src", "http://openweathermap.org/img/w/" + response.list[i].weather[0].icon + ".png");
+                        var displayIcon = $("<img>").attr("src", "https://openweathermap.org/img/w/" + response.list[i].weather[0].icon + ".png");
                         var fahrenheit = (response.list[i].main.temp) * (9/5) - 459.67;
                         var displayTemp = $("<p>").text("Temp: " + fahrenheit.toFixed(2) + " ^F");
                         var displayHumidity = $("<p>").text("Humidity: " + response.list[i].main.humidity + " %");
