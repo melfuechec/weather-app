@@ -1,7 +1,6 @@
 $(document).ready(function() {
     $("#searchBtn").on("click", function(event) {
         searchWeather();
-
         function searchWeather() {
             $("#currentWeatherHeading").empty();
             $("#currentWeatherP").empty();
